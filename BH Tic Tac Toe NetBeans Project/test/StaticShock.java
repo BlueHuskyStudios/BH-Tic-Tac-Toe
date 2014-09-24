@@ -1,5 +1,5 @@
 /**
- * StaticShock, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 CC 3.0 BY-SA<HR/>
+ * StaticShock, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
  * 
  * @author Kyli of Blue Husky Programming
  * @version 1.0.0
