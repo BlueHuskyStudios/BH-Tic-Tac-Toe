@@ -1,6 +1,7 @@
 package org.bh.game.ttt.gui.comps;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 

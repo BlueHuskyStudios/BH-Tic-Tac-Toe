@@ -39,4 +39,14 @@ public class Player
 		this.symbol = symbol;
 	}
 	
+	/**
+	 * Asks the player for their next move. If the player is going to take a while, {@code null} is returned, indicating that
+	 * the caller should set up a listener for the user's action and wait for that in order to assess the move.
+	 * 
+	 * @return The next move, or {@code null} if that will take a while.
+	 */
+	public Move nextMove()
+	{
+		return null;
+	}
 }

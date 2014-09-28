@@ -4,7 +4,11 @@ import bht.tools.comps.BHCompUtilities;
 import bht.tools.util.ArrayPP;
 import bht.tools.util.StringPP;
 import bht.tools.util.upd.Version;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bh.game.ttt.gui.GUI;
+import org.bh.game.ttt.gui.comps.FXFrame;
 import org.bh.game.ttt.gui.comps.GUIFrame;
 import org.bh.game.ttt.local.Lang;
 
@@ -42,19 +46,30 @@ public class Main
 	{
 		BHCompUtilities.setUsesOSMenuBar(true, Main.GAME_NAME);
 		lang = new Lang();
+		ConsoleHandler ch = new ConsoleHandler();
+		ch.setLevel(Level.ALL);
+		Logger.getGlobal().addHandler(ch);
+		Logger.getGlobal().setLevel(Level.ALL);
 	}
 
 	
 	
-	private static GUIFrame frame;
-
 	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args)
 	{
 		System.out.println("Starting " + GAME_NAME + " " + GAME_VERSION + " (" + GAME_ABBR + "_" + GAME_VERSION_STR + ")");
-		frame = new GUIFrame();
-		frame.setVisible(true);
+		try
+		{
+			Application a = new Application();
+			a.start(new FXFrame());
+		}
+		catch (Throwable t)
+		{
+			Logger.getGlobal().log(Level.FINE, "Cannot init FX. Reverting to Swing", t);
+			GUIFrame frame = new GUIFrame();
+			frame.setVisible(true);
+		}
 	}
 }

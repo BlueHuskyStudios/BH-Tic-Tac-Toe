@@ -1,16 +1,17 @@
 package org.bh.game.ttt.gui.comps;
 
-import bht.tools.comps.BHCompUtilities;
 import java.awt.HeadlessException;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import javax.swing.JFrame;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import static org.bh.game.ttt.Constants.D;
 import org.bh.game.ttt.Main;
 import org.bh.game.ttt.evt.QuitAction;
-import org.bh.game.ttt.gui.GUI;
+import org.bh.game.ttt.gui.FXGUI;
 
 /**
  * GUIFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
@@ -19,12 +20,13 @@ import org.bh.game.ttt.gui.GUI;
  * @version 1.0.0
  * @since 2014-09-21
  */
-public class GUIFrame extends JFrame implements WindowListener
+public class FXFrame extends Stage
 {
-	private GUI gui;
+//	private FXGUI gui;
 
-	public GUIFrame() throws HeadlessException
+	public FXFrame() throws HeadlessException
 	{
+		super(null);
 		initGUI();
 	}
 
@@ -33,12 +35,16 @@ public class GUIFrame extends JFrame implements WindowListener
 	private void initGUI()
 	{
 		{
-			gui = new GUI();
-			setContentPane(gui);
-			addWindowListener(this);
+			/* Moved to Application.java
+			gui = new FXGUI();
+			setScene(gui);*/
+			
+//			setContentPane(gui);
+//			addWindowListener(this);
 		}
+		if (8==D)
 		{
-			jmb = getJMenuBar();
+			jmb = null;//getJMenuBar();
 			if (jmb == null)
 				jmb = new JMenuBar();
 			{
@@ -54,11 +60,11 @@ public class GUIFrame extends JFrame implements WindowListener
 				JMenuItem quitMenuItem = new JMenuItem(new QuitAction());
 				appMenu.add(quitMenuItem);
 			}
-			setJMenuBar(jmb);
+//			setJMenuBar(jmb);
 		}
 	}
 
-	@Override
+	/*@Override
 	public void windowOpened(WindowEvent e){}
 
 	@Override
@@ -71,5 +77,5 @@ public class GUIFrame extends JFrame implements WindowListener
 	@Override public void windowIconified(WindowEvent e){}
 	@Override public void windowDeiconified(WindowEvent e){}
 	@Override public void windowActivated(WindowEvent e){}
-	@Override public void windowDeactivated(WindowEvent e){}
+	@Override public void windowDeactivated(WindowEvent e){}*/
 }

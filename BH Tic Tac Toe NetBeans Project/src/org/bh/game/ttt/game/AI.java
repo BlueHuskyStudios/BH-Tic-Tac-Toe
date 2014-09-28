@@ -1,5 +1,7 @@
 package org.bh.game.ttt.game;
 
+import java.awt.Point;
+
 /**
  * AI, made for BH Tic Tac Toe NetBeans Project, is copyright Blue Husky Programming ©2014 GPLv3 <hr/>
  * 
@@ -13,5 +15,11 @@ public class AI extends Player
 	public AI(String name, char symbol)
 	{
 		super(name, symbol);
+	}
+
+	@Override
+	public Move nextMove()
+	{
+		return new Move(0, 0);
 	}
 }
