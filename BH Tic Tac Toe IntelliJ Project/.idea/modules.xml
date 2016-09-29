@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$//BH Tic Tac Toe.iml" filepath="$PROJECT_DIR$//BH Tic Tac Toe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib/BHToolbox/BHToolbox/BHToolbox.iml" filepath="$PROJECT_DIR$/../lib/BHToolbox/BHToolbox/BHToolbox.iml" />
     </modules>
   </component>
 </project>
