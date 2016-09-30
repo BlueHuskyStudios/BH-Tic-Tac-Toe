@@ -1,16 +1,13 @@
 package org.bh.game.ttt.gui.comps;
 
-import bht.tools.comps.BHCompUtilities;
-import java.awt.HeadlessException;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import org.bh.game.ttt.Main;
-import org.bh.game.ttt.evt.QuitAction;
-import org.bh.game.ttt.gui.GUI;
+import org.bh.game.ttt.*;
+import org.bh.game.ttt.evt.*;
+import org.bh.game.ttt.game.*;
+import org.bh.game.ttt.gui.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * GUIFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
@@ -21,20 +18,21 @@ import org.bh.game.ttt.gui.GUI;
  */
 public class GUIFrame extends JFrame implements WindowListener
 {
-	private GUI gui;
+	private SwingGUI _swingGui;
 
-	public GUIFrame() throws HeadlessException
+	public GUIFrame(TicTacToeGameManager gameManager) throws HeadlessException
 	{
-		initGUI();
+		initGUI(gameManager);
 	}
 
 	private JMenuBar jmb;
 	private JMenu appMenu;
-	private void initGUI()
+	private void initGUI(TicTacToeGameManager gameManager)
 	{
 		{
-			gui = new GUI();
-			setContentPane(gui);
+			TicTacToeGrid grid = gameManager.grid();
+			_swingGui = new SwingGUI(grid);
+			setContentPane(_swingGui);
 			addWindowListener(this);
 		}
 		{
@@ -56,6 +54,8 @@ public class GUIFrame extends JFrame implements WindowListener
 			}
 			setJMenuBar(jmb);
 		}
+
+		pack();
 	}
 
 	@Override

@@ -8,8 +8,9 @@ package org.bh.game.ttt;
  *		- 2014-09-25 (1.0.0) - Kyli created Constants
  * @since 2014-09-25
  */
+@SuppressWarnings("OctalInteger")
 public interface Constants
 {
-	/** Debug state */
-	public static final byte D = 011;
+    /** Debug state */
+    public static final byte D = 011;
 }
