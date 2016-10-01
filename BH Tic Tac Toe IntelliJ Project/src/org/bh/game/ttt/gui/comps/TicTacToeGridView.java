@@ -7,6 +7,8 @@ import org.bh.tools.struct.coord.*;
 import javax.swing.*;
 import java.awt.*;
 
+import static sun.awt.shell.ShellFolder.invoke;
+
 /**
  * TicTacToeGridView, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
  *
@@ -16,18 +18,30 @@ import java.awt.*;
  */
 public class TicTacToeGridView extends JComponent {
     private TicTacToeGrid _model;
+    private final JLabel noGameLabel = invoke(() -> {
+        JLabel ret = new JLabel("Game not started");
+        ret.setHorizontalAlignment(JLabel.CENTER);
+        return ret;
+    });
 
     public TicTacToeGridView(TicTacToeGrid model) {
         _model = model;
-        initGUI();
+        reloadGUI();
     }
 
-    private void initGUI() {
-        Size<Integer> modelSize = _model.size();
-        setLayout(new GridLayout(modelSize.getWidth(), modelSize.getHeight()));
-        for (TicTacToeSquare[] squareRow : _model.squareRows()) {
-            for (TicTacToeSquare square : squareRow) {
-                add(new TicTacToeSquareView(square));
+    private void reloadGUI() {
+        removeAll();
+
+        if (_model == null) {
+            setLayout(new BorderLayout());
+            add(noGameLabel, BorderLayout.CENTER);
+        } else {
+            Size<Integer> modelSize = _model.size();
+            setLayout(new GridLayout(modelSize.getWidth(), modelSize.getHeight()));
+            for (TicTacToeSquare[] squareRow : _model.squareRows()) {
+                for (TicTacToeSquare square : squareRow) {
+                    add(new TicTacToeSquareView(square));
+                }
             }
         }
     }

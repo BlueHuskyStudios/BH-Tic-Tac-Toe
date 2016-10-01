@@ -25,8 +25,8 @@ public class GUIFrame extends JFrame implements WindowListener
 		initGUI(gameManager);
 	}
 
-	private JMenuBar jmb;
-	private JMenu appMenu;
+	private JMenuBar _menuBar;
+	private JMenu    _appMenu;
 	private void initGUI(TicTacToeGameManager gameManager)
 	{
 		{
@@ -36,26 +36,30 @@ public class GUIFrame extends JFrame implements WindowListener
 			addWindowListener(this);
 		}
 		{
-			jmb = getJMenuBar();
-			if (jmb == null)
-				jmb = new JMenuBar();
+            _menuBar = getJMenuBar();
+			if (_menuBar == null)
+                _menuBar = new JMenuBar();
 			{
-				if (jmb.getMenuCount() >= 1)
+				if (_menuBar.getMenuCount() >= 1)
 				{
-					appMenu = jmb.getMenu(0);
+                    _appMenu = _menuBar.getMenu(0);
 				}
 				else
 				{
-					appMenu = new JMenu(Main.GAME_ABBR);
-					jmb.add(appMenu);
+                    _appMenu = new JMenu(Main.GAME_ABBR);
+					_menuBar.add(_appMenu);
 				}
+				JMenuItem startGameMenuItem = new JMenuItem(new StartGameAction(gameManager));
+				_appMenu.add(startGameMenuItem);
+
 				JMenuItem quitMenuItem = new JMenuItem(new QuitAction());
-				appMenu.add(quitMenuItem);
+				_appMenu.add(quitMenuItem);
 			}
-			setJMenuBar(jmb);
+			setJMenuBar(_menuBar);
 		}
 
 		pack();
+        setMinimumSize(getSize());
 	}
 
 	@Override
