@@ -8,27 +8,35 @@ import java.awt.*;
 
 /**
  * SwingGUI, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
- * 
+ *
  * @author Kyli of Blue Husky Programming
  * @version 1.0.0
  * @since 2014-09-21
  */
-public class SwingGUI extends JComponent
-{
+public class SwingGUI extends JComponent {
 
-	public SwingGUI(TicTacToeGrid model)
-	{
-		initGUI(model);
-	}
+    private TicTacToeGridView tttPanel;
+    private TicTacToeGrid     _model;
 
-	private TicTacToeGridView tttPanel;
-	private void initGUI(TicTacToeGrid model)
-	{
-		setLayout(new BorderLayout());
-		{
-			tttPanel = new TicTacToeGridView(model);
-			add(tttPanel, BorderLayout.CENTER);
-		}
-	}
-	
+    public SwingGUI(TicTacToeGrid model) {
+        _model = model;
+        reloadGUI();
+    }
+
+    private void reloadGUI() {
+        setLayout(new BorderLayout());
+        {
+            tttPanel = new TicTacToeGridView(_model);
+            add(tttPanel, BorderLayout.CENTER);
+        }
+    }
+
+    public void showStatus(String newStatus) {
+        tttPanel.showStatus(newStatus);
+    }
+
+    public void setGrid(TicTacToeGrid grid) {
+        _model = grid;
+        reloadGUI();
+    }
 }

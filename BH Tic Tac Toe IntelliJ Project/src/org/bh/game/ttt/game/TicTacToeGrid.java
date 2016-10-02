@@ -37,7 +37,7 @@ public class TicTacToeGrid {
 
     public static class TicTacToeSquare {
         private Player                                        occupant;
-        private MutableArrayPP<TicTacToeSquareChangeListener> _listeners;
+        private MutableArrayPP<TicTacToeSquareChangeListener> _listeners = new MutableArrayPP<>();
 
         public Player getOccupant() {
             return occupant;

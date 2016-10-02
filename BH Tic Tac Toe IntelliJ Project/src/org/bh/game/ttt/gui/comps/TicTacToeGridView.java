@@ -17,9 +17,10 @@ import static sun.awt.shell.ShellFolder.invoke;
  * @since 2014-09-21
  */
 public class TicTacToeGridView extends JComponent {
+    private static String _defaultStatusMessage = "Game not started";
     private TicTacToeGrid _model;
-    private final JLabel noGameLabel = invoke(() -> {
-        JLabel ret = new JLabel("Game not started");
+    private final JLabel _statusLabel = invoke(() -> {
+        JLabel ret = new JLabel(_defaultStatusMessage);
         ret.setHorizontalAlignment(JLabel.CENTER);
         return ret;
     });
@@ -32,9 +33,10 @@ public class TicTacToeGridView extends JComponent {
     private void reloadGUI() {
         removeAll();
 
-        if (_model == null) {
+        if (_model == null || _statusIsMoreImportant) {
             setLayout(new BorderLayout());
-            add(noGameLabel, BorderLayout.CENTER);
+            _statusLabel.setText(_statusMessage == null ? _defaultStatusMessage : _statusMessage);
+            add(_statusLabel, BorderLayout.CENTER);
         } else {
             Size<Integer> modelSize = _model.size();
             setLayout(new GridLayout(modelSize.getWidth(), modelSize.getHeight()));
@@ -44,5 +46,14 @@ public class TicTacToeGridView extends JComponent {
                 }
             }
         }
+    }
+
+    private boolean _statusIsMoreImportant = false;
+    private String _statusMessage = null;
+
+    public void showStatus(String newStatus) {
+        _statusIsMoreImportant = null != newStatus;
+        _statusMessage = newStatus;
+        reloadGUI();
     }
 }

@@ -24,6 +24,6 @@ class TicTacToeSquareView(val model: TicTacToeGrid.TicTacToeSquare): JComponent(
 
     fun initGUI() {
         layout = BorderLayout()
-        add(label)
+        add(label, BorderLayout.CENTER)
     }
 }
