@@ -24,8 +24,7 @@ public class TicTacToeGameManager {
     private MutableArrayPP<Player>                  players = generateNewPlayers(2);
 
     private MutableArrayPP<Player> generateNewPlayers(int numberOfPlayers) {
-        return new MutableArrayPP<>(numberOfPlayers,
-                new Player[0],
+        return new MutableArrayPP<Player>(numberOfPlayers,
                 (int idx) -> new Player("Player " + (idx + 1), (char) ('a' + idx)));
     }
 

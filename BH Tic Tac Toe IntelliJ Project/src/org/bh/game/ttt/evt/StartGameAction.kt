@@ -10,7 +10,7 @@ import javax.swing.AbstractAction
  * @author Ben Leggiero
  * @since 2016-10-01
  */
-class StartGameAction(val gameManager: TicTacToeGameManager): AbstractAction("StartGame") {
+class StartGameAction(val gameManager: TicTacToeGameManager): AbstractAction("New Game") {
     override fun actionPerformed(e: ActionEvent?) {
         gameManager.startGame()
     }

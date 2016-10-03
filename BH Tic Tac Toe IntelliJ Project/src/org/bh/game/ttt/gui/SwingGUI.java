@@ -24,6 +24,8 @@ public class SwingGUI extends JComponent {
     }
 
     private void reloadGUI() {
+        removeAll();
+
         setLayout(new BorderLayout());
         {
             tttPanel = new TicTacToeGridView(_model);

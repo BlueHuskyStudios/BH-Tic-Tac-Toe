@@ -1,7 +1,9 @@
 package org.bh.game.ttt.game;
 
+import com.sun.istack.internal.NotNull;
 import org.bh.tools.struct.coord.*;
 import org.bh.tools.util.*;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * TicTacToeGrid, made for BH Tic Tac Toe NetBeans Project, is copyright Blue Husky Programming ©2014 GPLv3 <hr/>
@@ -39,11 +41,11 @@ public class TicTacToeGrid {
         private Player                                        occupant;
         private MutableArrayPP<TicTacToeSquareChangeListener> _listeners = new MutableArrayPP<>();
 
-        public Player getOccupant() {
+        public @Nullable Player getOccupant() {
             return occupant;
         }
 
-        public void setOccupant(Player newOccupant) {
+        public void setOccupant(@Nullable Player newOccupant) {
             occupant = newOccupant;
         }
 
@@ -53,10 +55,10 @@ public class TicTacToeGrid {
 
         @Override
         public String toString() {
-            return Character.toString(occupant.getSymbol());
+            return occupant == null ? "?" : Character.toString(occupant.getSymbol());
         }
 
-        public void addChangeListener(TicTacToeSquareChangeListener listener) {
+        public void addChangeListener(@NotNull TicTacToeSquareChangeListener listener) {
             if (null == listener) {
                 return;
             }
@@ -64,6 +66,7 @@ public class TicTacToeGrid {
             listener.squareDidChange(new TicTacToeSquareChangeEvent(null, this));
         }
 
+        @SuppressWarnings("WeakerAccess")
         public static interface TicTacToeSquareChangeListener {
             public void squareDidChange(TicTacToeSquareChangeEvent change);
         }
@@ -83,7 +86,8 @@ public class TicTacToeGrid {
              */
             public final TicTacToeSquare NEW_VALUE;
 
-            public TicTacToeSquareChangeEvent(TicTacToeSquare OLD_VALUE, TicTacToeSquare NEW_VALUE) {
+            public TicTacToeSquareChangeEvent(@Nullable TicTacToeSquare OLD_VALUE, @Nullable TicTacToeSquare
+                    NEW_VALUE) {
                 this.OLD_VALUE = OLD_VALUE;
                 this.NEW_VALUE = NEW_VALUE;
             }

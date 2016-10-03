@@ -15,8 +15,12 @@ class TicTacToeSquareView(val model: TicTacToeGrid.TicTacToeSquare): JComponent(
     val label: JLabel by lazy { JLabel() }
 
     init {
-        model.addChangeListener {
-            label.text = it.NEW_VALUE.occupant.symbol.toString()
+        model.addChangeListener { event ->
+            if (null == event.NEW_VALUE.occupant) {
+                label.text = "?"
+            } else {
+                label.text = event.NEW_VALUE.occupant!!.symbol.toString()
+            }
         }
 
         initGUI()
