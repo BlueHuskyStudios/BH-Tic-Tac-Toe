@@ -1,17 +1,13 @@
 package org.bh.game.ttt.res;
 
 import bht.tools.util.save.general.SaveConstants;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bh.game.ttt.Main;
+
+import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 
 /**
  * Resources, made for BH Tic Tac Toe NetBeans Project, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
@@ -48,7 +44,7 @@ public class Resources
 	public static InputStream getExternalLanguageStream(Locale locale) throws IOException
 	{
 		
-		File extracted = SaveConstants.inventSaveFileFor(Main.GAME_NAME, locale.toLanguageTag() + ".lang");
+		File extracted = SaveConstants.inventSaveFileFor(RuntimeConstants.getAPP_NAME(),locale.toLanguageTag() + ".lang");
 		System.out.println("Loading language from " + extracted);
 		if (!extracted.exists())
 		{

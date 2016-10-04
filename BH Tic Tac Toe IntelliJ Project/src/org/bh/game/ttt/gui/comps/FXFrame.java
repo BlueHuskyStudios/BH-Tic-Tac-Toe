@@ -1,13 +1,13 @@
 package org.bh.game.ttt.gui.comps;
 
 import javafx.stage.Stage;
-import org.bh.game.ttt.*;
 import org.bh.game.ttt.evt.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static org.bh.game.ttt.Constants.*;
+import static org.bh.game.ttt.CompiletimeConstants.*;
+import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 
 /**
  * FXFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
@@ -28,10 +28,10 @@ public class FXFrame extends Stage
 
 	private JMenuBar jmb;
 	private JMenu appMenu;
-	private void initGUI()
+	@SuppressWarnings("ConstantConditions") private void initGUI()
 	{
 		{
-			/* Moved to Application.java
+			/* Moved to FXApplication.java
 			gui = new FXGUI();
 			setScene(gui);*/
 			
@@ -50,7 +50,7 @@ public class FXFrame extends Stage
 				}
 				else
 				{
-					appMenu = new JMenu(Main.GAME_ABBR);
+					appMenu = new JMenu(RuntimeConstants.getAPP_NAME_ABBR());
 					jmb.add(appMenu);
 				}
 				JMenuItem quitMenuItem = new JMenuItem(new QuitAction());

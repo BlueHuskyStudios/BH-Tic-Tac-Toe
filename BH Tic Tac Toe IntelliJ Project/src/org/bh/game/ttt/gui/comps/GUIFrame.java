@@ -1,6 +1,5 @@
 package org.bh.game.ttt.gui.comps;
 
-import org.bh.game.ttt.*;
 import org.bh.game.ttt.evt.*;
 import org.bh.game.ttt.game.*;
 import org.bh.game.ttt.gui.*;
@@ -8,6 +7,8 @@ import org.bh.game.ttt.gui.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 
 /**
  * GUIFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
@@ -49,7 +50,7 @@ public class GUIFrame extends JFrame implements WindowListener, GameStateChangeL
 				}
 				else
 				{
-                    _appMenu = new JMenu(Main.GAME_ABBR);
+                    _appMenu = new JMenu(RuntimeConstants.getAPP_NAME_ABBR());
 					_menuBar.add(_appMenu);
 				}
 				JMenuItem startGameMenuItem = new JMenuItem(new StartGameAction(_gameManager));
