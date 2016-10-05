@@ -2,7 +2,7 @@ package org.bh.game.ttt
 
 import bht.tools.util.StringPP
 import org.bh.game.ttt.local.Lang
-import org.bh.tools.func.ChangeObserver
+import org.bh.tools.func.Observing
 import org.bh.tools.struct.Version
 
 /**
@@ -33,7 +33,7 @@ class RuntimeConstantsWrapper {
         val GAME_VERSION_STR = GAME_VERSION.toString()
 
         /** The language to display the game in  */
-        var lang: Lang by ChangeObserver(Lang.en_US,
+        var lang: Lang by Observing(Lang.en_US,
                 willSet = { oldValue, newValue ->
                     // I dunno reload I guess
                 })
