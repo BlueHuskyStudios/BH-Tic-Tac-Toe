@@ -1,16 +1,14 @@
 package org.bh.game.ttt.gui.comps;
 
-import bht.tools.comps.BHCompUtilities;
-import java.awt.HeadlessException;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import org.bh.game.ttt.Main;
-import org.bh.game.ttt.evt.QuitAction;
-import org.bh.game.ttt.gui.GUI;
+import org.bh.game.ttt.evt.*;
+import org.bh.game.ttt.game.*;
+import org.bh.game.ttt.gui.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 
 /**
  * GUIFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
@@ -19,43 +17,53 @@ import org.bh.game.ttt.gui.GUI;
  * @version 1.0.0
  * @since 2014-09-21
  */
-public class GUIFrame extends JFrame implements WindowListener
+public class GUIFrame extends JFrame implements WindowListener, GameStateChangeListener
 {
-	private GUI gui;
+	private SwingGUI _swingGui;
+    private TicTacToeGameManager _gameManager;
 
-	public GUIFrame() throws HeadlessException
+	public GUIFrame(TicTacToeGameManager gameManager) throws HeadlessException
 	{
+        _gameManager = gameManager;
 		initGUI();
+        _gameManager.addStateChangeListener(this);
 	}
 
-	private JMenuBar jmb;
-	private JMenu appMenu;
+	private JMenuBar _menuBar;
+	private JMenu    _appMenu;
 	private void initGUI()
 	{
 		{
-			gui = new GUI();
-			setContentPane(gui);
+			TicTacToeGrid grid = _gameManager.grid();
+			_swingGui = new SwingGUI(grid);
+			setContentPane(_swingGui);
 			addWindowListener(this);
 		}
 		{
-			jmb = getJMenuBar();
-			if (jmb == null)
-				jmb = new JMenuBar();
+            _menuBar = getJMenuBar();
+			if (_menuBar == null)
+                _menuBar = new JMenuBar();
 			{
-				if (jmb.getMenuCount() >= 1)
+				if (_menuBar.getMenuCount() >= 1)
 				{
-					appMenu = jmb.getMenu(0);
+                    _appMenu = _menuBar.getMenu(0);
 				}
 				else
 				{
-					appMenu = new JMenu(Main.GAME_ABBR);
-					jmb.add(appMenu);
+                    _appMenu = new JMenu(RuntimeConstants.getAPP_NAME_ABBR());
+					_menuBar.add(_appMenu);
 				}
+				JMenuItem startGameMenuItem = new JMenuItem(new StartGameAction(_gameManager));
+				_appMenu.add(startGameMenuItem);
+
 				JMenuItem quitMenuItem = new JMenuItem(new QuitAction());
-				appMenu.add(quitMenuItem);
+				_appMenu.add(quitMenuItem);
 			}
-			setJMenuBar(jmb);
+			setJMenuBar(_menuBar);
 		}
+
+		pack();
+        setMinimumSize(getSize());
 	}
 
 	@Override
@@ -72,4 +80,33 @@ public class GUIFrame extends JFrame implements WindowListener
 	@Override public void windowDeiconified(WindowEvent e){}
 	@Override public void windowActivated(WindowEvent e){}
 	@Override public void windowDeactivated(WindowEvent e){}
+
+    @Override public void gameStateChanged(GameStateChangeEvent evt) {
+        if (null == _swingGui) {
+            return;
+        }
+
+        _swingGui.setGrid(_gameManager.grid());
+
+        switch (evt.NEW_STATE) {
+            case LOADING:
+                _swingGui.showStatus("Loading...");
+                break;
+            case LOADED:
+                _swingGui.showStatus("Game not started");
+                break;
+            case WAITING:
+                _swingGui.showStatus(null);
+                break;
+            case STARTING:
+                _swingGui.showStatus("Starting game...");
+                break;
+            case PLAYING:
+                _swingGui.showStatus(null);
+                break;
+            case STOPPING:
+                _swingGui.showStatus(null);
+                break;
+        }
+    }
 }

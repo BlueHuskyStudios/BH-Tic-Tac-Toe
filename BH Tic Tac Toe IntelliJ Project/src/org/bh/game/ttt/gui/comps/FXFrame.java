@@ -1,20 +1,16 @@
 package org.bh.game.ttt.gui.comps;
 
-import java.awt.HeadlessException;
-import java.awt.event.WindowEvent;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import static org.bh.game.ttt.Constants.D;
-import org.bh.game.ttt.Main;
-import org.bh.game.ttt.evt.QuitAction;
-import org.bh.game.ttt.gui.FXGUI;
+import org.bh.game.ttt.evt.*;
+
+import javax.swing.*;
+import java.awt.*;
+
+import static org.bh.game.ttt.CompiletimeConstants.*;
+import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 
 /**
- * GUIFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
+ * FXFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
  * 
  * @author Kyli of Blue Husky Programming
  * @version 1.0.0
@@ -32,10 +28,10 @@ public class FXFrame extends Stage
 
 	private JMenuBar jmb;
 	private JMenu appMenu;
-	private void initGUI()
+	@SuppressWarnings("ConstantConditions") private void initGUI()
 	{
 		{
-			/* Moved to Application.java
+			/* Moved to FXApplication.java
 			gui = new FXGUI();
 			setScene(gui);*/
 			
@@ -54,7 +50,7 @@ public class FXFrame extends Stage
 				}
 				else
 				{
-					appMenu = new JMenu(Main.GAME_ABBR);
+					appMenu = new JMenu(RuntimeConstants.getAPP_NAME_ABBR());
 					jmb.add(appMenu);
 				}
 				JMenuItem quitMenuItem = new JMenuItem(new QuitAction());

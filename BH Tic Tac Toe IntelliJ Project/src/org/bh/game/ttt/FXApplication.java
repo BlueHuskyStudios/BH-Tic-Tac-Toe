@@ -1,21 +1,25 @@
 package org.bh.game.ttt;
 
 import javafx.stage.Stage;
-import org.bh.game.ttt.game.TicTacToeGameManager;
-import org.bh.game.ttt.gui.FXGUI;
-import org.bh.game.ttt.gui.comps.FXFrame;
+import org.bh.game.ttt.game.*;
+import org.bh.game.ttt.gui.*;
+import org.bh.game.ttt.gui.comps.*;
 
 /**
- * Application, made for BH Tic Tac Toe NetBeans Project, is copyright Blue Husky Programming ©2014 GPLv3 <hr/>
+ * FXApplication, made for BH Tic Tac Toe NetBeans Project, is copyright Blue Husky Programming ©2014 GPLv3 <hr/>
  * 
  * @author Kyli of Blue Husky Programming
  * @version 1.0.0
- *		- 2014-09-24 (1.0.0) - Kyli created Application
+ *		- 2014-09-24 (1.0.0) - Kyli created FXApplication
  * @since 2014-09-24
  */
-public class Application extends javafx.application.Application
+public class FXApplication extends javafx.application.Application
 {
 	private TicTacToeGameManager gameManager;
+
+	public void start() throws Exception {
+		start(new FXFrame());
+	}
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception

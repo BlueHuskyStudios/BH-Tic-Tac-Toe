@@ -1,27 +1,24 @@
 package org.bh.game.ttt.evt;
 
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import org.bh.game.ttt.Main;
+import javax.swing.*;
+import java.awt.event.*;
+
+import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 
 /**
  * QuitAction, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
- * 
+ *
  * @author Kyli of Blue Husky Programming
  * @version 1.0.0
  * @since 2014-09-21
  */
-public class QuitAction extends AbstractAction
-{
+public class QuitAction extends AbstractAction {
+    public QuitAction() {
+        super(RuntimeConstants.getLang().get("menu.app.quit", "Quit"));
+    }
 
-	public QuitAction()
-	{
-		super(Main.lang.get("menu.app.quit", "Quit"));
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		System.exit(0);
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+    }
 }
