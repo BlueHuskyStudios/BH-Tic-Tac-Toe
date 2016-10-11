@@ -1,6 +1,6 @@
 package org.bh.game.ttt
 
-import bht.tools.comps.BHCompUtilities
+import org.bh.tools.crossplatform.MenuBarUtils
 import java.util.logging.ConsoleHandler
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -17,7 +17,7 @@ class TicTacToeApplication {
          * Call this before the main method. Best place is in the main class' `static` method.
          */
         fun setUpPlatform() {
-            BHCompUtilities.setUsesOSMenuBar(true, RuntimeConstantsWrapper.APP_NAME)
+            MenuBarUtils.setUsesOSMenuBar(true, RuntimeConstantsWrapper.APP_NAME)
 
             val consoleHandler = ConsoleHandler()
             consoleHandler.level = Level.ALL
@@ -32,11 +32,11 @@ class TicTacToeApplication {
             System.out.println("Starting ${RuntimeConstantsWrapper.APP_NAME} ${RuntimeConstantsWrapper.GAME_VERSION} " +
                     "(${RuntimeConstantsWrapper.APP_NAME_ABBR}_${RuntimeConstantsWrapper.GAME_VERSION_STR})")
 
-            try {
-                FXApplication().start()
-            } catch (t: Throwable) {
+//            try {
+//                FXApplication().start()
+//            } catch (t: Throwable) {
                 SwingApplication().start()
-            }
+//            }
         }
     }
 }

@@ -11,7 +11,10 @@ import org.bh.tools.ui.LookAndFeelEnum
  * @author BenLeggiero
  * @since 2016-09-29
  */
-class SwingApplication(val gameManager: TicTacToeGameManager = TicTacToeGameManager(), val frame: GUIFrame = GUIFrame(gameManager)) {
+class SwingApplication(
+        val gameManager: TicTacToeGameManager = TicTacToeGameManager(),
+        val frame: GUIFrame = GUIFrame(gameManager)
+) {
 
     init {
         LookAndFeelChanger.setLookAndFeel(LookAndFeelEnum.Nimbus, false, { errorType ->

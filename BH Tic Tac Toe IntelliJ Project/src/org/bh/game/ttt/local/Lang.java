@@ -1,6 +1,6 @@
 package org.bh.game.ttt.local;
 
-import bht.tools.util.ArrayPP;
+import org.bh.tools.util.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileInputStream;
@@ -17,26 +17,18 @@ import static org.bh.game.ttt.res.Resources.*;
  * Strings, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
  *
  * @author Kyli of Blue Husky Programming
- * @version 1.0.0
+ * @version 1.1.0
+ *          ! 1.1.0 (2016-10-09) - Ben updated Lang to work without BHToolbox version 1, cleaned up code
+ *          . 1.0.0 (2014-09-22) - Kyli made Lang
  * @since 2014-09-22
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Lang {
-    private final ArrayPP<LangChangeListener> LANG_CHANGE_LISTENERS = new ArrayPP<>();
-    //	private HashMap<CharSequence, String> map = new HashMap<>();
-    private Properties map = new Properties();
+    @NotNull public static final Lang                               DEFAULT_LANGUAGE      = new Lang();
+    @NotNull public static final Lang                               en_US                 = makeLangForLocale(Locale.US);
+    private final                MutableArrayPP<LangChangeListener> LANG_CHANGE_LISTENERS = new MutableArrayPP<>();
+    private                      Properties                         map                   = new Properties();
     private Locale locale;
-    @NotNull public static final Lang defaultLanguage = new Lang();
-    @NotNull public static final Lang en_US = makeLangForLocale(Locale.US);
-
-    private static Lang makeLangForLocale(Locale locale) {
-        Lang ret;
-        try {
-            ret = new Lang(Locale.US);
-        } catch (UnsupportedLanguageException ex) {
-            ret = new Lang();
-        }
-        return ret;
-    }
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public Lang() {
@@ -80,13 +72,23 @@ public class Lang {
     }
 
     private void alertOfLanguageChange(Locale old) {
-        LANG_CHANGE_LISTENERS.trimInside();
+        LANG_CHANGE_LISTENERS.removeNulls();
         LangChangeEvent evt = new LangChangeEvent(old, locale, this);
         for (LangChangeListener langChangeListener : LANG_CHANGE_LISTENERS) { langChangeListener.languageChanged(evt); }
     }
 
     public Lang(Locale initLocale) throws UnsupportedLanguageException {
         setLocale(initLocale);
+    }
+
+    private static Lang makeLangForLocale(Locale locale) {
+        Lang ret;
+        try {
+            ret = new Lang(Locale.US);
+        } catch (UnsupportedLanguageException ex) {
+            ret = new Lang();
+        }
+        return ret;
     }
 
     public String get(CharSequence key) {
