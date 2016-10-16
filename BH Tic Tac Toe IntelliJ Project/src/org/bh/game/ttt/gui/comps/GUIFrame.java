@@ -31,7 +31,7 @@ public class GUIFrame extends JFrame implements WindowListener, GameStateChangeL
 
     private void initGUI() {
         {
-            TicTacToeGrid grid = _gameManager.grid();
+            TicTacToeGrid grid = _gameManager.getGrid();
             _swingGui = new SwingGUI(grid);
             setContentPane(_swingGui);
             addWindowListener(this);
@@ -82,7 +82,7 @@ public class GUIFrame extends JFrame implements WindowListener, GameStateChangeL
             return;
         }
 
-        _swingGui.setGrid(_gameManager.grid());
+        _swingGui.setGrid(_gameManager.getGrid());
 
         switch (evt.getNewState()) {
             case LOADING:

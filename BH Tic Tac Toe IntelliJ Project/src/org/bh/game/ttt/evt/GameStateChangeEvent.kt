@@ -1,6 +1,6 @@
 package org.bh.game.ttt.evt;
 
-import org.bh.game.ttt.game.TicTacToeGameManager.GameState
+import org.bh.game.ttt.game.GameState
 import java.util.*
 
 /**

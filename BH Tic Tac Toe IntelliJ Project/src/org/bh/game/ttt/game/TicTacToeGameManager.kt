@@ -19,15 +19,21 @@ import kotlin.concurrent.fixedRateTimer
  */
 @SuppressWarnings("unused", "WeakerAccess")
 class TicTacToeGameManager {
-    private var grid: TicTacToeGrid? = null
-    private val gameLoopThread: Timer
-    private var isPlaying: Boolean = false
-    private val players = generateNewPlayers(2)
-
-    private fun generateNewPlayers(numberOfPlayers: Int): MutableArrayPP<Player> {
-        return MutableArrayPP<Player>(numberOfPlayers,
-                { idx: Int -> __TEST__Player("Player " + (idx + 1), ('a' + idx).toChar()) })
+    companion object {
+        private fun generateNewPlayers(numberOfPlayers: Int): MutableArrayPP<Player> {
+            return MutableArrayPP(numberOfPlayers,
+                    { idx: Int -> __TEST__Player("Player " + (idx + 1), ('a' + idx).toChar()) })
+        }
     }
+
+    var grid: TicTacToeGrid? = null
+    private val gameLoopThread: Timer
+    val isPlaying: Boolean
+        get() = when (_state) {
+            STARTING, PLAYING -> true
+            LOADING, LOADED, WAITING, STOPPING -> false
+        }
+    private val players = Companion.generateNewPlayers(2)
 
     private val _changeListeners = MutableArrayPP<GameStateChangeListener>()
     private var _state = LOADING
@@ -70,18 +76,14 @@ class TicTacToeGameManager {
     }
 
     fun startGame() {
-        isPlaying = true
         setGameState(STARTING)
-        if (!gameLoopThread.isAlive) {
-            gameLoopThread.start()
-        }
     }
 
     private var _gameplayStopListener: GameplayStopListener? = null
 
     fun stopPlaying(callback: GameplayStopListener) {
         _gameplayStopListener = callback
-        isPlaying = false
+        _state = STOPPING
     }
 
     fun setGameState(newState: GameState): Boolean {
