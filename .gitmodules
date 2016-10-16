@@ -1,6 +1,3 @@
-[submodule "lib/BHToolbox"]
-	path = lib/BHToolbox
-	url = https://github.com/BlueHuskyStudios/BHToolbox.git
-[submodule "lib/Blue-Base"]
-	path = lib/Blue-Base
-	url = https://github.com/BlueHuskyStudios/Blue-Base.git
+[submodule "lib/BHSP"]
+	path = lib/BHSP
+	url = https://github.com/BlueHuskyStudios/Blue-Husky-Software-Platform.git
