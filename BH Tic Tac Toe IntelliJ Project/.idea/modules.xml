@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BH Tic Tac Toe.iml" filepath="$PROJECT_DIR$/BH Tic Tac Toe.iml" />
       <module fileurl="file://$PROJECT_DIR$/../lib/BHToolbox/BHToolbox/BHToolbox.iml" filepath="$PROJECT_DIR$/../lib/BHToolbox/BHToolbox/BHToolbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib/Blue-Base/JVM/Blue Base.iml" filepath="$PROJECT_DIR$/../lib/Blue-Base/JVM/Blue Base.iml" />
     </modules>
   </component>
 </project>

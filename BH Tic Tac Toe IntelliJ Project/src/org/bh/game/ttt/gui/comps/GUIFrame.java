@@ -3,6 +3,7 @@ package org.bh.game.ttt.gui.comps;
 import org.bh.game.ttt.evt.*;
 import org.bh.game.ttt.game.*;
 import org.bh.game.ttt.gui.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,83 +13,78 @@ import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 
 /**
  * GUIFrame, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
- * 
+ *
  * @author Kyli of Blue Husky Programming
  * @version 1.0.0
  * @since 2014-09-21
  */
-public class GUIFrame extends JFrame implements WindowListener, GameStateChangeListener
-{
-	private SwingGUI _swingGui;
+public class GUIFrame extends JFrame implements WindowListener, GameStateChangeListener {
+    private SwingGUI             _swingGui;
     private TicTacToeGameManager _gameManager;
-
-	public GUIFrame(TicTacToeGameManager gameManager) throws HeadlessException
-	{
+    private JMenuBar _menuBar;
+    private JMenu    _appMenu;
+    public GUIFrame(TicTacToeGameManager gameManager) throws HeadlessException {
         _gameManager = gameManager;
-		initGUI();
+        initGUI();
         _gameManager.addStateChangeListener(this);
-	}
+    }
 
-	private JMenuBar _menuBar;
-	private JMenu    _appMenu;
-	private void initGUI()
-	{
-		{
-			TicTacToeGrid grid = _gameManager.grid();
-			_swingGui = new SwingGUI(grid);
-			setContentPane(_swingGui);
-			addWindowListener(this);
-		}
-		{
+    private void initGUI() {
+        {
+            TicTacToeGrid grid = _gameManager.grid();
+            _swingGui = new SwingGUI(grid);
+            setContentPane(_swingGui);
+            addWindowListener(this);
+        }
+        {
             _menuBar = getJMenuBar();
-			if (_menuBar == null)
-                _menuBar = new JMenuBar();
-			{
-				if (_menuBar.getMenuCount() >= 1)
-				{
+            if (_menuBar == null) { _menuBar = new JMenuBar(); }
+            {
+                if (_menuBar.getMenuCount() >= 1) {
                     _appMenu = _menuBar.getMenu(0);
-				}
-				else
-				{
+                } else {
                     _appMenu = new JMenu(RuntimeConstants.getAPP_NAME_ABBR());
-					_menuBar.add(_appMenu);
-				}
-				JMenuItem startGameMenuItem = new JMenuItem(new StartGameAction(_gameManager));
-				_appMenu.add(startGameMenuItem);
+                    _menuBar.add(_appMenu);
+                }
+                JMenuItem startGameMenuItem = new JMenuItem(new StartGameAction(_gameManager));
+                _appMenu.add(startGameMenuItem);
 
-				JMenuItem quitMenuItem = new JMenuItem(new QuitAction());
-				_appMenu.add(quitMenuItem);
-			}
-			setJMenuBar(_menuBar);
-		}
+                JMenuItem quitMenuItem = new JMenuItem(new QuitAction());
+                _appMenu.add(quitMenuItem);
+            }
+            setJMenuBar(_menuBar);
+        }
 
-		pack();
+        pack();
         setMinimumSize(getSize());
-	}
+    }
 
-	@Override
-	public void windowOpened(WindowEvent e){}
+    @Override
+    public void windowOpened(WindowEvent e) {}
 
-	@Override
-	public void windowClosing(WindowEvent e)
-	{
-		System.exit(0);
-	}
+    @Override
+    public void windowClosing(WindowEvent e) {
+        System.exit(0);
+    }
 
-	@Override public void windowClosed(WindowEvent e){}
-	@Override public void windowIconified(WindowEvent e){}
-	@Override public void windowDeiconified(WindowEvent e){}
-	@Override public void windowActivated(WindowEvent e){}
-	@Override public void windowDeactivated(WindowEvent e){}
+    @Override public void windowClosed(WindowEvent e) {}
 
-    @Override public void gameStateChanged(GameStateChangeEvent evt) {
+    @Override public void windowIconified(WindowEvent e) {}
+
+    @Override public void windowDeiconified(WindowEvent e) {}
+
+    @Override public void windowActivated(WindowEvent e) {}
+
+    @Override public void windowDeactivated(WindowEvent e) {}
+
+    @Override public void gameStateChanged(@NotNull GameStateChangeEvent evt) {
         if (null == _swingGui) {
             return;
         }
 
         _swingGui.setGrid(_gameManager.grid());
 
-        switch (evt.NEW_STATE) {
+        switch (evt.getNewState()) {
             case LOADING:
                 _swingGui.showStatus("Loading...");
                 break;

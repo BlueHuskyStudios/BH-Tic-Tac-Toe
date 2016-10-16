@@ -2,6 +2,7 @@ package org.bh.game.ttt.evt;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.EventObject;
 
 import static org.bh.game.ttt.RuntimeConstantsWrapper.*;
 

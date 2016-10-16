@@ -31,7 +31,7 @@ public class FXFrame extends Stage
 	@SuppressWarnings("ConstantConditions") private void initGUI()
 	{
 		{
-			/* Moved to FXApplication.java
+			/* Moved to FXApplication.kt
 			gui = new FXGUI();
 			setScene(gui);*/
 			
