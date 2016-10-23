@@ -7,9 +7,9 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 /**
- * Strings, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
+ * Strings, made for BH Tic Tac Toe, is copyright Blue Husky Software ©2014 GPLv3<HR/>
  *
- * @author Kyli of Blue Husky Programming
+ * @author Kyli of Blue Husky Software
  * @version 1.1.0
  *          ! 1.1.0 (2016-10-09) - Ben updated Lang to work without BHToolbox version 1, cleaned up code
  *          . 1.0.0 (2014-09-22) - Kyli made Lang

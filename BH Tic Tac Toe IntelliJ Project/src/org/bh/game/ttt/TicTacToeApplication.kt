@@ -3,7 +3,7 @@ package org.bh.game.ttt
 /**
  * The abstracted application of BH Tic Tac Toe
  *
- * @author Ben Leggiero of BLue Husky Programming
+ * @author Ben Leggiero of Blue Husky Software
  * @version 2.0.0
  * @since 2016-10-17
  */

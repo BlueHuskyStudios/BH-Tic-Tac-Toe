@@ -1,9 +1,9 @@
 package org.bh.game.ttt
 
 import org.bh.game.ttt.local.Lang
-import org.bh.tools.func.Observing
-import org.bh.tools.struct.Version
-import org.bh.tools.util.toAbbreviation
+import org.bh.tools.base.func.Observing
+import org.bh.tools.base.struct.Version
+import org.bh.tools.base.util.toAbbreviation
 
 /**
  * Copyright BHStudios ©2016 BH-1-PS. Made for BH Tic Tac Toe IntelliJ Project.
@@ -13,7 +13,8 @@ import org.bh.tools.util.toAbbreviation
  * @author Ben Leggiero
  * @since 2016-10-03
  */
-class RuntimeConstantsWrapper {
+class RuntimeConstantsWrapper
+private constructor() {// Just keeping the singleton public
     companion object RuntimeConstants {
         /**
          * The name of the game
@@ -41,7 +42,4 @@ class RuntimeConstantsWrapper {
                     // I dunno reload I guess
                 })
     }
-
-    @Suppress("unused") // Just keeping the singleton public
-    private constructor()
 }

@@ -3,7 +3,7 @@ package org.bh.game.ttt;
 /**
  * The main class for BH Tic Tac Toe
  *
- * @author Kyli and Ben of BLue Husky Programming
+ * @author Kyli and Ben of Blue Husky Software
  * @version 2.0.0
  * @since 2014-09-21
  */

@@ -3,9 +3,9 @@ package org.bh.game.ttt.local;
 import java.util.*
 
 /**
- * LangChangeEvent, made for BH Tic Tac Toe, is copyright Blue Husky Programming ©2014 GPLv3<HR/>
+ * LangChangeEvent, made for BH Tic Tac Toe, is copyright Blue Husky Software ©2014 GPLv3<HR/>
  * 
- * @author Kyli & Ben of Blue Husky Programming
+ * @author Kyli & Ben of Blue Husky Software
  * @version 2.0.0
  * @since 2014-09-22
  */
